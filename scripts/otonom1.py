@@ -7,12 +7,11 @@ from rclpy.qos import qos_profile_sensor_data
 import math
 
 FORCE_TURN_SIGN = 1
-# Điều chỉnh lại các thông số theo yêu cầu
-LIDAR_BLIND   = 0.01   # Vùng mù giảm xuống 1cm để nhận diện được vật ở mốc 5cm
-SAFE_DIST     = 0.05   # Khoảng cách an toàn là 5cm (0.05m)
-CLEAR_DIST    = 0.20   # Khoảng cách phía trước > 20cm là đủ an toàn để thoát xoay
-BACKUP_CYCLES = 30     
-MIN_TURN_CYCLES = 20   # Giảm nhẹ số chu kỳ quay tối thiểu
+LIDAR_BLIND   = 0.01   
+SAFE_DIST     = 0.05   
+CLEAR_DIST    = 0.20   
+BACKUP_CYCLES = 30    
+MIN_TURN_CYCLES = 20   
 FORWARD_SPEED = 0.30   
 BACKUP_SPEED  = -0.12
 TURN_SPEED    = 1.5    

@@ -544,67 +544,6 @@
 	    </plugin>
 	</gazebo>
 
-	<!-- ===================================================================== -->
-    <!-- MACRO TẠO CẢM BIẾN SIÊU ÂM (SONAR)                                    -->
-    <!-- ===================================================================== -->
-    <xacro:macro name="sonar_sensor" params="name xyz rpy topic">
-        <link name="${name}_link">
-            <visual>
-                <geometry>
-                    <box size="0.01 0.02 0.01"/>
-                </geometry>
-                <material name="green">
-                    <color rgba="0 1 0 1"/>
-                </material>
-            </visual>
-            <inertial>
-                <mass value="0.001"/>
-                <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
-            </inertial>
-        </link>
-
-        <joint name="${name}_joint" type="fixed">
-            <parent link="base_link"/>
-            <child link="${name}_link"/>
-            <origin xyz="${xyz}" rpy="${rpy}"/>
-        </joint>
-
-        <gazebo reference="${name}_link">
-            <!-- Mô phỏng Sonar bằng Lidar góc siêu hẹp -->
-            <sensor name="${name}" type="gpu_lidar">
-                <pose>0 0 0 0 0 0</pose>
-                <topic>${topic}</topic>
-                <update_rate>20</update_rate>
-                <visualize>true</visualize> <!-- Hiện tia màu xanh trong Gazebo -->
-                <always_on>true</always_on>
-                <ray>
-                    <scan>
-                        <horizontal>
-                            <samples>5</samples> <!-- 5 tia chụm lại tạo thành nón siêu âm -->
-                            <resolution>1</resolution>
-                            <min_angle>-0.1</min_angle>
-                            <max_angle>0.1</max_angle>
-                        </horizontal>
-                    </scan>
-                    <range>
-                        <min>0.01</min> <!-- Bắt đầu quét từ 1cm -->
-                        <max>2.0</max>  <!-- Chỉ quan tâm trong vòng 2 mét -->
-                        <resolution>0.01</resolution>
-                    </range>
-                </ray>
-            </sensor>
-            <material>Gazebo/Green</material>
-        </gazebo>
-    </xacro:macro>
-
-    <!-- KÍCH HOẠT 3 CẢM BIẾN VÀO 3 GÓC CỦA ROBOT -->
-    <!-- Mặt trước (Giữa bánh Trái và Phải) -->
-    <xacro:sonar_sensor name="sonar_front" xyz="0 -0.09 0.03" rpy="0 0 -1.5708" topic="/sonar/front"/>
-    <!-- Góc hông Trái (Giữa bánh Trái và Sau) -->
-    <xacro:sonar_sensor name="sonar_left"  xyz="0.08 0.04 0.03" rpy="0 0 0.5236" topic="/sonar/left"/>
-    <!-- Góc hông Phải (Giữa bánh Phải và Sau) -->
-    <xacro:sonar_sensor name="sonar_right" xyz="-0.08 0.04 0.03" rpy="0 0 2.6180" topic="/sonar/right"/>
-	
 	<!-- <gazebo>
         <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
             <render_engine>ogre2</render_engine>

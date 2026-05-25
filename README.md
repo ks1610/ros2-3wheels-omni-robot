@@ -2,6 +2,8 @@
 
 Original: https://github.com/Seda-cpu/3WD_OMNI_ROBOT
 
+![project demo](mesh/image.png)
+
 ## Thư mục project 
 ```
 cd ~/3WD_OMNI_ROBOT/diff/
@@ -13,6 +15,7 @@ colcon build --packages-select diff --symlink-install
 ```
 
 ## Về Project 
+![project demo](worlds/map.png)
 ### khởi động Gazebo & Rviz:
 ```
 source install/setup.bash
